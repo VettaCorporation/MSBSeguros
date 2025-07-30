@@ -8,6 +8,7 @@ html {
 	direction: ltr;
 	overflow-x: hidden;
 	box-shadow: none !important;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -17294,10 +17295,8 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
     position: absolute;
     top: 50%; /* Alinha verticalmente ao centro */
     transform: translateY(-50%); /* Ajusta para centralizar com base na própria altura do botão */
-    width: 40px; /* Largura padrão, ajuste se necessário */
-    height: 40px; /* Altura padrão, ajuste se necessário */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente, ajuste a cor e opacidade */
-    border-radius: 50%; /* Faz o fundo ser um círculo */
+    width: 60px; /* Largura padrão, ajuste se necessário */
+    height: 60px; /* Altura padrão, ajuste se necessário */
     display: flex; /* Para centralizar o ícone dentro */
     align-items: center; /* Centraliza verticalmente o ícone */
     justify-content: center; /* Centraliza horizontalmente o ícone */
@@ -17308,23 +17307,23 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
 
 #segurosCarousel .carousel-control-prev:hover,
 #segurosCarousel .carousel-control-next:hover {
-    opacity: 1; /* Aumenta a opacidade ao passar o mouse */
+    opacity: 2; /* Aumenta a opacidade ao passar o mouse */
 }
 
 #segurosCarousel .carousel-control-prev {
-    left: -55px; /* Posição da seta esquerda, ajuste conforme a necessidade */
+    left: -150px; /* Posição da seta esquerda, ajuste conforme a necessidade */
 }
 
 #segurosCarousel .carousel-control-next {
-    right: -55px; /* Posição da seta direita, ajuste conforme a necessidade */
+    right: -150px; /* Posição da seta direita, ajuste conforme a necessidade */
 }
 
 /* Estilo para os ícones dentro dos botões (as próprias setas) */
 #segurosCarousel .carousel-control-prev-icon,
 #segurosCarousel .carousel-control-next-icon {
     display: inline-block;
-    width: 20px; /* Largura do ícone, ajuste se necessário */
-    height: 20px; /* Altura do ícone, ajuste se necessário */
+    width: 60px; /* Largura do ícone, ajuste se necessário */
+    height: 60px; /* Altura do ícone, ajuste se necessário */
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 100% 100%;
