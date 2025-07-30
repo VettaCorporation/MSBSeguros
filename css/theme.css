@@ -17334,3 +17334,83 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
 /* As setas padrão do Bootstrap são backgrounds-image, então você pode não precisar definir a cor */
 /* Se suas setas forem SVG com fill, a cor primária do seu tema pode já estar sendo aplicada. */
 /* Se for um ícone de fonte (Font Awesome), você usaria color: #fff; */
+
+/* Correção para o Megamenu de Seguros (Pessoa Física e Jurídica) */
+
+/* Garante que o dropdown-menu seja um bloco e tenha largura suficiente */
+.header-nav-main-mega-menu .dropdown-menu {
+    display: block !important; /* Essencial para permitir o layout interno */
+    position: absolute !important; /* Mantém o posicionamento de dropdown */
+    min-width: 500px !important; /* Aumente esta largura para garantir espaço para as duas colunas. Teste valores como 550px, 600px se 500px não for suficiente. */
+    width: auto !important; /* Deixa a largura flexível se o min-width for suficiente */
+    max-width: none !important; /* Remove qualquer limite de largura */
+    padding: 15px !important; /* Adicione padding interno para as bordas do megamenu */
+    left: auto !important; /* Reseta posicionamento left se for o caso */
+    right: auto !important; /* Reseta posicionamento right se for o caso */
+}
+
+/* Garante que o conteúdo do megamenu seja um container flexível */
+.header-nav-main-mega-menu .mega-menu-content {
+    display: flex !important; /* Transforma o conteúdo em um container flexbox */
+    flex-wrap: wrap !important; /* Permite que as colunas quebrem em telas menores */
+    width: 100% !important; /* Garante que ocupe a largura total disponível */
+    margin: 0 !important; /* Remove margens extras */
+    padding: 0 !important; /* Remove padding extras */
+}
+
+/* Estiliza as colunas dentro do megamenu */
+.header-nav-main-mega-menu .mega-menu-content .col-md-6 {
+    /* As classes col-md-6 já deveriam aplicar a largura, mas podemos reforçar */
+    flex: 0 0 50% !important; /* Força cada coluna a ter 50% da largura */
+    max-width: 50% !important; /* Limita a largura máxima a 50% */
+    padding: 0 10px !important; /* Adiciona espaçamento interno para o conteúdo de cada coluna */
+}
+
+/* Estilos para as ULs e itens dentro das colunas */
+.header-nav-main-mega-menu .mega-menu-content ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important; /* Garante que a lista preencha a coluna */
+}
+
+.header-nav-main-mega-menu .mega-menu-content .dropdown-item {
+    white-space: normal !important; /* Permite que o texto do item quebre linha se for muito longo */
+    padding: 0.25rem 0.5rem !important; /* Ajusta o padding dos itens */
+}
+
+.header-nav-main-mega-menu .mega-menu-content .dropdown-header {
+    white-space: nowrap !important; /* Impede que o título do header quebre linha */
+    padding: 0.5rem 0.5rem !important; /* Ajusta o padding dos headers */
+    margin-bottom: 5px !important; /* Espaço abaixo do título */
+    font-size: 1.1em !important; /* Um pouco maior para destaque */
+    color: #333 !important; /* Cor mais escura para o negrito */
+    text-transform: uppercase !important; /* Coloca em maiúsculas se desejar */
+}
+
+/* Ajustes para a linha divisória e o link "Ver Todos" no final */
+.header-nav-main-mega-menu .dropdown-divider {
+    margin: 10px 0 !important;
+}
+
+.header-nav-main-mega-menu .dropdown-item.text-center {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+
+/* Responsividade para empilhar em telas menores */
+@media (max-width: 767.98px) { /* Telas abaixo de 768px (md) */
+    .header-nav-main-mega-menu .dropdown-menu {
+        min-width: 250px !important; /* Largura menor para mobile */
+        padding: 10px !important;
+    }
+    .header-nav-main-mega-menu .mega-menu-content .col-md-6 {
+        flex: 0 0 100% !important; /* Força 100% de largura para empilhar */
+        max-width: 100% !important;
+        padding-bottom: 15px !important; /* Espaçamento entre as categorias empilhadas */
+    }
+    .header-nav-main-mega-menu .mega-menu-content .col-md-6:last-child {
+        padding-bottom: 0 !important; /* Remove padding extra do último item */
+    }
+}
