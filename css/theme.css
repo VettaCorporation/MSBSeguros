@@ -17400,41 +17400,37 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
 
 
 /* Correção para o Megamenu em Telas Menores (Mobile/Tablet) */
-@media (max-width: 991.98px) { /* Este breakpoint pode variar, verifique se seu menu mobile ativa aqui */
+@media (max-width: 991.98px) {
 
-    /* Força o dropdown-menu a ser visível e se posicionar corretamente no fluxo */
+    /* Garante que o dropdown-menu seja visível e se posicione corretamente */
     .header-nav-main-mega-menu .dropdown-menu {
-        position: static !important; /* Mudar de absoluto para estático no mobile */
-        display: block !important;    /* Forçar a exibição do menu */
-        opacity: 1 !important;        /* Garantir visibilidade total */
-        visibility: visible !important; /* Garantir visibilidade */
-        width: 100% !important;       /* Ocupar a largura total disponível */
-        min-width: auto !important;   /* Remover largura mínima fixa */
-        max-width: none !important;   /* Remover largura máxima */
-        height: auto !important;      /* Altura se ajusta ao conteúdo */
-        overflow: visible !important; /* Garantir que o conteúdo não seja cortado */
-        left: auto !important;        /* Resetar posicionamento horizontal */
-        right: auto !important;       /* Resetar posicionamento horizontal */
-        top: auto !important;         /* Resetar posicionamento vertical */
-        transform: none !important;   /* Remover qualquer transformação */
-        background: transparent !important; /* Fundo transparente para integrar com o menu mobile */
-        box-shadow: none !important;  /* Remover sombra */
-        border: none !important;      /* Remover bordas */
-        padding: 0 !important;        /* Remover padding que pode estar causando espaçamento indesejado */
+        position: static !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        width: 100% !important;
+        min-width: auto !important;
+        max-width: none !important;
+        height: auto !important;
+        overflow: visible !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        background: transparent !important; /* Fundo transparente */
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important; /* Remove padding externo */
     }
 
-    /* Oculta o mega-menu-content por padrão e o mostra APENAS quando o LI pai está ativo (expandido) */
+    /* Força o mega-menu-content a ser visível e a empilhar suas colunas no mobile */
     .header-nav-main-mega-menu .mega-menu-content {
-        display: none !important; /* Esconde o conteúdo por padrão no mobile */
-        padding: 0 !important;
+        display: flex !important; /* Garante que o conteúdo seja um container flexível */
+        flex-direction: column !important; /* Empilha as colunas verticalmente */
+        flex-wrap: nowrap !important; /* Evita qualquer quebra indesejada */
+        width: 100% !important; /* Ocupa a largura total */
+        padding: 0 0 !important; /* Ajuste para espaçamento interno */
         margin: 0 !important;
-    }
-
-    /* ESTE É O BLOCO MAIS CRÍTICO: Mostra o conteúdo quando o LI pai tem a classe 'show' (via JS do Bootstrap/Tema) */
-    .header-nav-main-mega-menu.show .mega-menu-content {
-        display: flex !important; /* Usa flexbox para as colunas empilhadas */
-        flex-direction: column !important; /* Garante que as colunas se empilhem */
-        padding: 10px 0 !important; /* Espaçamento interno quando visível */
     }
 
     /* Estilo para as colunas individuais (Pessoa Física/Jurídica) no mobile */
@@ -17443,43 +17439,54 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
         width: 100% !important;
         flex: 0 0 100% !important;
         max-width: 100% !important;
-        padding: 10px 15px !important; /* Padding interno para cada seção de PF/PJ */
+        padding: 10px 20px !important; /* Adiciona padding interno às seções de PF/PJ para que o texto não cole nas bordas da tela */
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* Separador visual entre as categorias */
     }
 
-    /* Adiciona separador visual entre PF e PJ no mobile */
-    .header-nav-main-mega-menu .mega-menu-content .col-lg-6:first-of-type {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separador sutil */
-        padding-bottom: 15px !important;
-        margin-bottom: 15px !important;
-    }
-    .header-nav-main-mega-menu .mega-menu-content .col-lg-6:last-of-type {
-        padding-top: 0 !important; /* Remove padding superior extra para o segundo item empilhado */
-        padding-bottom: 0 !important; /* Remove padding inferior extra */
-        margin-bottom: 0 !important; /* Remove margem inferior extra */
+    /* Remove a borda inferior da última coluna para não ter um separador extra no final */
+    .header-nav-main-mega-menu .mega-menu-content .col-lg-6:last-of-type,
+    .header-nav-main-mega-menu .mega-menu-content .col-md-6:last-of-type {
+        border-bottom: none !important;
     }
 
-    /* Estilos para os títulos (Pessoa Física/Jurídica) no mobile */
+    /* Ajusta o padding dos títulos (dropdown-header) */
     .header-nav-main-mega-menu .dropdown-header {
         padding: 0.5rem 0 !important;
-        font-size: 1.2em !important;
+        margin-bottom: 5px !important;
+        font-size: 1.1em !important;
         color: #333 !important;
         text-transform: uppercase !important;
-        border-bottom: none !important; /* Remover borda de baixo se tiver */
     }
 
-    /* Estilos para os itens de seguro no mobile */
+    /* Ajusta o padding dos itens de seguro (dropdown-item) */
     .header-nav-main-mega-menu .dropdown-item {
         padding: 0.5rem 0 !important;
         white-space: normal !important;
         color: #555 !important;
     }
 
-    /* Garante que o link "Ver Todos" seja um bloco no mobile */
-    .header-nav-main-mega-menu .dropdown-menu > .dropdown-item {
+    /* O link "Ver Todos os Seguros" precisa ser um item de lista para se comportar como os outros no menu mobile */
+    .header-nav-main-mega-menu .dropdown-menu > .dropdown-divider {
+        display: none !important; /* Esconde o divisor, se não for mais necessário aqui */
+    }
+
+    /* Move o link "Ver Todos os Seguros" para dentro da estrutura da lista, se ainda não estiver */
+    /* VERIFIQUE SEU HTML: se ele não estiver dentro de um <li> ele não será formatado como um item de menu padrão */
+    /* Se seu HTML for assim: <a>Ver Todos</a>, mude para: <li><a class="dropdown-item" href="...">Ver Todos</a></li> */
+    .header-nav-main-mega-menu .dropdown-menu > a.dropdown-item { /* Se o link 'Ver Todos' é filho direto de .dropdown-menu */
         display: block !important;
         text-align: center !important;
-        padding: 10px 0 !important;
-        margin-top: 10px !important; /* Espaço acima do link "Ver Todos" */
-        border-top: 1px solid rgba(0, 0, 0, 0.1); /* Separador para "Ver Todos" */
+        padding: 10px 20px !important; /* Padding do link "Ver Todos" */
+        font-weight: bold !important;
+        color: #007bff !important;
+        background-color: #f8f9fa !important; /* Fundo para destaque */
+        border-top: 1px solid rgba(0,0,0,0.1) !important; /* Separador superior */
+        margin-top: 10px !important; /* Espaço acima */
+    }
+
+    /* Adicional: Garante que os ULs internos não tenham padding/margin padrão indesejado */
+    .header-nav-main-mega-menu .mega-menu-content ul.list-unstyled {
+        padding: 0 !important;
+        margin: 0 !important;
     }
 }
