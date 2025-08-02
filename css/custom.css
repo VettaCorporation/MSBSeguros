@@ -1,0 +1,46 @@
+/* Ajuste na LARGURA do Mega Menu de Seguros */
+#header .header-nav-main-mega-menu .dropdown-menu {
+    width: 600px;
+}
+
+@media screen and (max-width: 991px) {
+    #header .header-nav-main-mega-menu .dropdown-menu {
+        width: 300px;
+    }
+
+}
+
+/* ================================================================ */
+/* VERSÃO FINAL: Setas do Carrossel Fora da Área de Texto     */
+/* ================================================================ */
+
+
+#segurosCarousel .carousel-control-prev,
+#segurosCarousel .carousel-control-next {
+    background-color: transparent !important;
+    opacity: 1;
+    width: auto;
+}
+
+#segurosCarousel .carousel-control-prev {
+    left: -80px; 
+}
+
+#segurosCarousel .carousel-control-next {
+    right: -80px; 
+}
+
+#segurosCarousel .carousel-control-prev-icon,
+#segurosCarousel .carousel-control-next-icon {
+    height: 45px;
+    width: 45px;
+}
+
+#segurosCarousel .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23777'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+#segurosCarousel .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23777'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
