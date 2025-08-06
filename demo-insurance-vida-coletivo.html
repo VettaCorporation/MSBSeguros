@@ -693,49 +693,39 @@
             />
           </svg>
 
-          					<div class="container py-3">
+  <div class="container py-3">
     <div class="row">
         <div class="col-lg-8 col-xl-7 ms-lg-auto">
             <div class="bg-light text-center p-5">
                 <div class="py-2 px-md-5">
-                    <h2 id="cotação" class="font-weight-bold text-7 mb-1">Cotação Plano Odontológico</h2>
-                    <p class="text-3-5 mb-5-5">Preencha os dados e garanta um sorriso saudável para você e sua família.</p>
+                    <h2 id="cotação" class="font-weight-bold text-7 mb-1">Cotação Seguro de Vida Coletivo</h2>
+                    <p class="text-3-5 mb-5-5">Garanta o futuro de seus funcionários e de suas famílias.</p>
 
                     <form action="" class="custom-form-style-1">
-                        <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados Pessoais</h3>
+                        <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados da Empresa</h3>
                         <div class="row gy-3">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
+                                <input type="text" class="form-control" name="empresa_nome" placeholder="Nome da Empresa" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                                <input type="email" class="form-control" name="empresa_email" placeholder="E-mail da Empresa" required>
                             </div>
                         </div>
                         <div class="row gy-3 mt-3">
                             <div class="form-group col-md-6">
-                                <input type="tel" class="form-control" name="telefone" placeholder="Celular" required>
+                                <input type="tel" class="form-control" name="empresa_telefone" placeholder="Telefone da Empresa" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="cpf" placeholder="CPF (Opcional)">
+                                <input type="text" class="form-control" name="cnpj" placeholder="CNPJ" required>
                             </div>
                         </div>
 
-                        <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Detalhes do Plano</h3>
-                        <div class="row gy-3">
-                            <div class="form-group col-md-6">
-                                <select class="form-control w-100" name="tipo_plano" required>
-                                    <option value="" selected disabled>Tipo de Plano</option>
-                                    <option value="individual">Individual</option>
-                                    <option value="familiar">Familiar</option>
-                                    <option value="empresarial">Empresarial</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="number" class="form-control" name="num_beneficiarios" placeholder="Nº de Beneficiários" required>
-                            </div>
+                        <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Detalhes para a Cotação</h3>
+                        <div class="form-group mb-3">
+                            <input type="number" class="form-control" name="num_funcionarios" placeholder="Nº de Funcionários" required>
                         </div>
-                        <div class="form-group mb-4 mt-3">
-                            <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações (Opcional)"></textarea>
+                        <div class="form-group mb-4">
+                            <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações e tipo de cobertura desejada"></textarea>
                         </div>
                         
 							<!-- Botão -->
