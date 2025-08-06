@@ -394,7 +394,7 @@
                   <li class="active">Seguro</li>
                 </ul>
                 <h1 class="font-weight-bold text-color-dark text-10 mt-1 mb-0">
-                  Seguro Viagem
+                  Seguro Moto
                 </h1>
               </div>
             </div>
@@ -412,7 +412,7 @@
                 <img
                   width="120"
                   height="120"
-                  src="img/demos/insurance/icons/seguro-viagem.svg"
+                  src="img/demos/insurance/icons/seguro-moto.svg"
                   alt=""
                   data-icon
                   data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary float-end ms-3 mb-3'}"
@@ -695,19 +695,19 @@
             />
           </svg>
 
-    <div class="container py-3">
+ <div class="container py-3">
     <div class="row">
         <div class="col-lg-8 col-xl-7 ms-lg-auto">
             <div class="bg-light text-center p-5">
                 <div class="py-2 px-md-5">
-                    <h2 id="cotação" class="font-weight-bold text-7 mb-1">Cotação Seguro Viagem</h2>
-                    <p class="text-3-5 mb-5-5">Viaje com tranquilidade e proteção contra imprevistos.</p>
+                    <h2 id="cotação" class="font-weight-bold text-7 mb-1">Cotação Seguro Pet</h2>
+                    <p class="text-3-5 mb-5-5">Cuide do seu melhor amigo com coberturas para saúde e acidentes.</p>
 
                     <form action="" class="custom-form-style-1">
                         <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados Pessoais</h3>
                         <div class="row gy-3">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
+                                <input type="text" class="form-control" name="nome" placeholder="Seu Nome Completo" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <input type="email" class="form-control" name="email" placeholder="E-mail" required>
@@ -717,24 +717,29 @@
                             <input type="tel" class="form-control" name="telefone" placeholder="Celular" required>
                         </div>
                         
-                        <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Detalhes da Viagem</h3>
+                        <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Informações do Pet</h3>
                         <div class="row gy-3">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="destino" placeholder="País de Destino" required>
+                                <input type="text" class="form-control" name="pet_nome" placeholder="Nome do Pet" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="number" class="form-control" name="num_viajantes" placeholder="Nº de Viajantes" required>
+                                <select class="form-control w-100" name="pet_especie" required>
+                                    <option value="" selected disabled>Espécie</option>
+                                    <option value="cão">Cão</option>
+                                    <option value="gato">Gato</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row gy-3 mt-3">
                             <div class="form-group col-md-6">
-                                <label class="form-label text-start d-block">Data de Partida</label>
-                                <input type="date" class="form-control" name="data_partida" required>
+                                <input type="text" class="form-control" name="pet_raca" placeholder="Raça" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="form-label text-start d-block">Data de Retorno</label>
-                                <input type="date" class="form-control" name="data_retorno" required>
+                                <input type="number" class="form-control" name="pet_idade" placeholder="Idade (Anos)" required>
                             </div>
+                        </div>
+                        <div class="form-group mb-4 mt-3">
+                            <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações (Opcional)"></textarea>
                         </div>
                         
 							<!-- Botão -->
