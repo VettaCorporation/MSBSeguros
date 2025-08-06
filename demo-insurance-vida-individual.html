@@ -704,116 +704,122 @@
                           <p class="text-3-5 mb-5-5">Garanta o futuro de sua família com a melhor cobertura para sua vida.</p>
 
                           <form action="" class="custom-form-style-1">
-          <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados Pessoais</h3>
-          <div class="row gy-3">
-              <div class="form-group col-md-6">
-                  <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
-              </div>
-              <div class="form-group col-md-6">
-                  <input type="email" class="form-control" name="email" placeholder="E-mail" required>
-              </div>
-          </div>
-          <div class="row gy-3 mt-3">
-              <div class="form-group col-md-6">
-                  <input type="tel" class="form-control" name="telefone" placeholder="Celular" required>
-              </div>
-              <div class="form-group col-md-6">
-                  <input type="date" class="form-control" name="data_nascimento" placeholder="Data de Nascimento" required>
-              </div>
-          </div>
-          <div class="row gy-3 mt-3">
-              <div class="form-group col-md-6">
-                  <input type="text" class="form-control" name="cpf" placeholder="CPF" required>
-              </div>
-              <div class="form-group col-md-6">
-                  <input type="text" class="form-control" name="profissao" placeholder="Profissão" required>
-              </div>
-          </div>
+                            <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados Pessoais</h3>
+                            <div class="form-group mb-3">
+                              <label class="form-label">Qual o valor da Cobertura?</label>
+                              <select class="form-control" name="valor_cobertura" required>
+                                <option value="" disabled selected>Escolha o valor...</option>
+                                <option value="50000">R$ 50.000 - R$ 100.000</option>
+                                <option value="100000">R$ 100.000 - R$ 200.000</option>
+                                <option value="200000">R$ 200.000 - R$ 300.000</option>
+                                <option value="300000">R$ 300.000 - R$ 400.000</option>
+                                <option value="400000">R$ 400.000 - R$ 500.000</option>
+                                <option value="500000">R$ 500.000 - R$ 600.000</option>
+                                <option value="600000">R$ 600.000 - R$ 700.000</option>
+                                <option value="700000">R$ 700.000 - R$ 800.000</option>
+                                <option value="800000">R$ 800.000 - R$ 900.000</option>
+                                <option value="900000">R$ 900.000 - R$ 1.000.000</option>
+                                <option value="1000000">R$ 1.000.000 - R$ 2.000.000</option>
+                                <option value="2000000">R$ 2.000.000 - R$ 3.000.000</option>
+                                <option value="3000000">R$ 3.000.000 - R$ 4.000.000</option>
+                                <option value="4000000">R$ 4.000.000 - R$ 5.000.000</option>
+                                <option value="acima_5000000">Acima de R$ 5.000.000</option>
+                              </select>
+                            </div>
 
-          <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Detalhes da Cobertura</h3>
-          <div class="form-group mb-3">
-              <input type="number" class="form-control" name="cobertura_desejada" placeholder="Valor de Cobertura Desejada (R$)" required>
-          </div>
+                            <div class="row gy-3">
+                              <div class="form-group col-md-6">
+                                <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <input type="date" class="form-control" name="data_nascimento" placeholder="Data de Nascimento" required>
+                              </div>
+                            </div>
+                            <div class="row gy-3 mt-3">
+                              <div class="form-group col-md-6">
+                                <input type="tel" class="form-control" name="telefone" placeholder="Celular ou Fixo" required>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <input type="text" class="form-control" name="ocupacao" placeholder="Função ou Ocupação" required>
+                              </div>
+                            </div>
+                            <div class="row gy-3 mt-3">
+                              <div class="form-group col-md-6">
+                                <select class="form-control" name="faixa_renda" required>
+                                  <option value="" disabled selected>Faixa de Renda</option>
+                                  <option value="ate_2">Até 2 SM</option>
+                                  <option value="2_a_5">De 2 a 5 SM</option>
+                                  <option value="mais_5">Mais de 5 SM</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <input type="text" class="form-control" name="cpf" placeholder="CPF" required id="cpf">
+                              </div>
+                            </div>
 
-          <div class="form-group mb-3">
-                <label class="form-label">Operadora de Preferência</label><br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-check text-start">
-                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Sul América"> Sul América
-                        </div>
-                        <div class="form-check text-start">
-                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Amil Saúde"> Amil Saúde
-                        </div>
-                        <div class="form-check text-start">
-                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Hapvida"> Hapvida
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-check text-start">
-                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Bradesco Seguros"> Bradesco Seguros
-                        </div>
-                        <div class="form-check text-start">
-                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Unimed"> Unimed
-                        </div>
-                        <div class="form-check text-start">
-                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Outras"> Outras
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <h4 class="text-color-dark font-weight-semibold text-4 mt-4">Coberturas Básicas *</h4>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="morte"> Morte</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="invalidez_acidente"> Invalidez por Acidente</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="funeral_individual"> Funeral Individual</div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="morte_acidental"> Morte Acidental</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="invalidez_doenca"> Invalidez por Doença</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="saude_familiar"> Rede de Saúde Familiar</div>
+                              </div>
+                            </div>
 
-            <div class="form-group mb-3">
-                <label for="tipo_plano">Tipo de Plano</label>
-                <select class="form-control" name="tipo_plano">
-                    <option value="com">Com coparticipação</option>
-                    <option value="sem">Sem coparticipação</option>
-                    <option value="ambos">Com ou sem coparticipação</option>
-                </select>
-            </div>
+                            <h4 class="text-color-dark font-weight-semibold text-4 mt-4">Coberturas Complementares</h4>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="morte_conjuge"> Morte com Extensão ao Cônjuge</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="dit"> DIT (Perda de Renda Temporária)</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="doenca_terminal"> Adiantamento por Doença Terminal</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="dih"> DIH (Diária por Internação Hospitalar por Doença ou Acidente)</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="cirurgias"> Cirurgias</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="funeral_familiar"> Funeral Familiar</div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="doencas_graves"> Doenças Graves</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="despesas_medicas"> Despesas Médicas e Odontológicas</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="dih_a"> DIH A (Diária por Internação Hospitalar por Acidente)</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="uti"> Diária por Internação em UTI</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="filhos_postumos"> Filhos Póstumos</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="jazigo"> Aquisição de Jazigo</div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="funeral_ampliado"> Funeral Ampliado</div>
+                              </div>
+                            </div>
 
-            <div class="form-group mb-3">
-                <label for="genero">Gênero</label>
-                <select class="form-control" name="genero" onchange="document.getElementById('gestante').style.display = this.value === 'feminino' ? 'block' : 'none';">
-                    <option value="">Selecione</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                </select>
-            </div>
-            <div class="form-group mb-3" id="gestante" style="display: none;">
-                <label>Está gestante?</label>
-                <select class="form-control" name="gestante">
-                    <option value="nao">Não</option>
-                    <option value="sim">Sim</option>
-                </select>
-            </div>
+                            <div class="form-group mb-3 mt-4">
+                              <label class="form-label">Possui doenças pré-existentes?</label>
+                              <select class="form-control" name="doencas_preexistentes">
+                                <option value="nao">Não</option>
+                                <option value="sim">Sim</option>
+                              </select>
+                            </div>
 
-            <div class="form-group mb-3">
-                <label>Possui plano de saúde atualmente?</label>
-                <select class="form-control" name="possui_plano" onchange="document.getElementById('detalhes_plano_atual').style.display = this.value === 'sim' ? 'block' : 'none';">
-                    <option value="nao">Não</option>
-                    <option value="sim">Sim</option>
-                </select>
-            </div>
+                            <div class="form-group mb-4 mt-3">
+                              <label class="form-label">Observações:</label>
+                              <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações (Opcional)"></textarea>
+                            </div>
+                          </form>
 
-            <div id="detalhes_plano_atual" style="display: none;">
-                <div class="form-group mb-3">
-                    <input type="text" class="form-control" name="operadora_atual" placeholder="Qual a operadora atual?">
-                </div>
-                <div class="form-group mb-3">
-                    <input type="text" class="form-control" name="nome_tipo_plano_atual" placeholder="Nome e Tipo de plano atual">
-                </div>
-                <div class="form-group mb-3">
-                    <input type="number" class="form-control" name="valor_pago_atualmente" placeholder="Qual o valor pago atualmente?">
-                </div>
-            </div>
+                          <script>
+                          // Máscara para CPF
+                          function mascaraCPF(cpf) {
+                            cpf = cpf.replace(/\D/g, "");
+                            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+                            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+                            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+                            return cpf;
+                          }
 
-            <div class="form-group mb-3">
-                <textarea class="form-control" name="doencas_pre_existentes" rows="3" placeholder="Doenças Pré-existentes (*Se houver)"></textarea>
-            </div>
-            <div class="form-group mb-4">
-                <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações (*Opcional)"></textarea>
-            </div>
+                          document.getElementById("cpf").addEventListener("input", function (e) {
+                            e.target.value = mascaraCPF(e.target.value);
+                          });
+                          </script>
                         
                         
 							<!-- Botão -->
