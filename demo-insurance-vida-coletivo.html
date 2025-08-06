@@ -695,40 +695,139 @@
             />
           </svg>
 
-  <div class="container py-3">
-    <div class="row">
-        <div class="col-lg-8 col-xl-7 ms-lg-auto">
-            <div class="bg-light text-center p-5">
-                <div class="py-2 px-md-5">
-                    <h2 id="cotação" class="font-weight-bold text-7 mb-1">Cotação Seguro de Vida Coletivo</h2>
-                    <p class="text-3-5 mb-5-5">Garanta o futuro de seus funcionários e de suas famílias.</p>
+          <div class="container py-3">
+            <div class="row">
+                <div class="col-lg-8 col-xl-7 ms-lg-auto">
+                    <div class="bg-light text-center p-5">
+                        <div class="py-2 px-md-5">
+                            <h2 id="cotação" class="font-weight-bold text-7 mb-1">Cotação Seguro de Vida Coletivo</h2>
+                            <p class="text-3-5 mb-5-5">Garanta o futuro de seus funcionários e de suas famílias.</p>
 
-                    <form action="" class="custom-form-style-1">
-                        <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados da Empresa</h3>
-                        <div class="row gy-3">
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="empresa_nome" placeholder="Nome da Empresa" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" name="empresa_email" placeholder="E-mail da Empresa" required>
-                            </div>
-                        </div>
-                        <div class="row gy-3 mt-3">
-                            <div class="form-group col-md-6">
-                                <input type="tel" class="form-control" name="empresa_telefone" placeholder="Telefone da Empresa" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="cnpj" placeholder="CNPJ" required>
-                            </div>
-                        </div>
+        <form action="" class="custom-form-style-1">
+            <h3 class="text-color-dark font-weight-semibold text-4 mb-3">Dados da Empresa</h3>
+            <div class="row gy-3">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="empresa_nome" placeholder="Razão Social da Empresa" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="cnpj" placeholder="CNPJ" required>
+                </div>
+            </div>
+            <div class="row gy-3 mt-3">
+                <div class="form-group col-md-6">
+                    <input type="tel" class="form-control" name="telefone" placeholder="Telefone da Empresa" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                </div>
+            </div>
 
-                        <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Detalhes para a Cotação</h3>
-                        <div class="form-group mb-3">
-                            <input type="number" class="form-control" name="num_funcionarios" placeholder="Nº de Funcionários" required>
+            <h3 class="text-color-dark font-weight-semibold text-4 mt-5 mb-3">Informações do Seguro Coletivo</h3>
+            <div class="form-group mb-3">
+                <input type="number" class="form-control" name="quantidade_pessoas" placeholder="Número Total de Vidas" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label">Distribuição das Vidas</label>
+                <div class="row g-2">
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_00_18" placeholder="00 a 18"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_19_23" placeholder="19 a 23"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_24_28" placeholder="24 a 28"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_29_33" placeholder="29 a 33"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_34_38" placeholder="34 a 38"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_39_43" placeholder="39 a 43"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_44_48" placeholder="44 a 48"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_49_53" placeholder="49 a 53"></div>
+                    <div class="col-md-4"><input type="number" class="form-control" name="idade_54_58" placeholder="54 a 58"></div>
+                </div>
+                <div class="mt-3">
+                    <label for="idade_idosos">Idade dos Pessoas acima de 58 anos</label>
+                    <input type="number" class="form-control" name="quantidade_idosos" placeholder="Quantos idosos tem na sua empresa?">
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Existe alguma gestante no grupo?</label>
+                <select class="form-control" name="existe_gestante">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <textarea class="form-control" name="profissoes_colaboradores" rows="3" placeholder="Principais profissões ou funções dos colaboradores" required></textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="number" class="form-control" name="cobertura_desejada" placeholder="Valor médio de cobertura desejada por colaborador (R$)" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label">Operadora de preferência</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check text-start">
+                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Sul América">
+                            <label class="form-check-label">Sul América</label>
                         </div>
-                        <div class="form-group mb-4">
-                            <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações e tipo de cobertura desejada"></textarea>
+                        <div class="form-check text-start">
+                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Amil Saúde">
+                            <label class="form-check-label">Amil Saúde</label>
                         </div>
+                        <div class="form-check text-start">
+                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Hapvida">
+                            <label class="form-check-label">Hapvida</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check text-start">
+                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Bradesco Seguros">
+                            <label class="form-check-label">Bradesco Seguros</label>
+                        </div>
+                        <div class="form-check text-start">
+                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Unimed">
+                            <label class="form-check-label">Unimed</label>
+                        </div>
+                        <div class="form-check text-start">
+                            <input class="form-check-input" type="checkbox" name="operadora_preferencia[]" value="Outras">
+                            <label class="form-check-label">Outras</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="tipo_plano">Tipo de plano para análise</label>
+                <select class="form-control" name="tipo_plano">
+                    <option value="com">Com coparticipação</option>
+                    <option value="sem">Sem coparticipação</option>
+                    <option value="ambos">Com ou sem coparticipação</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Possui plano de saúde empresarial atualmente?</label>
+                <select class="form-control" name="possui_plano" onchange="document.getElementById('detalhes_plano_atual').style.display = this.value === 'sim' ? 'block' : 'none';">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+
+            <div id="detalhes_plano_atual" style="display: none;">
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="operadora_atual" placeholder="Qual a operadora atual?">
+                </div>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="nome_tipo_plano_atual" placeholder="Nome e tipo de plano atual">
+                </div>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="valor_pago_atualmente" placeholder="Valor pago atualmente (R$)">
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <textarea class="form-control" name="observacoes" rows="4" placeholder="Observações (Opcional)"></textarea>
+            </div>
                         
 							<!-- Botão -->
 											<input type="submit" class="btn btn-secondary btn-rounded border-0 w-100 text-center font-weight-bold text-3-5 btn-py-3" value="ENVIAR" />
