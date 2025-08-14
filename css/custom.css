@@ -133,3 +133,67 @@ Projeto: MSB Seguros
         margin-bottom: 40px !important;
     }
 }
+
+
+/*
+=================================================================
+3. TIPOS DE SEGURO DO RODAPE
+=================================================================
+*/
+
+
+
+        .seguros-colunas .titulo-coluna {
+        font-weight: 700;
+        color: #1d1d1d;
+        padding: .5rem 0;
+        margin: 0 0 .5rem;
+        border-bottom: 1px solid #e9e9e9;
+        white-space: nowrap; 
+        display: block;      
+        }
+
+        .seguros-colunas .quebra-coluna {
+        break-before: column;
+        -webkit-column-break-before: always; /* Safari/Chrome antigos */
+        }
+
+        .seguros-colunas .dropdown-item:hover {
+        color: var(--dark) !important;
+        }
+
+        .container.pt-5-5.pb-3 .row.gy-5 {
+        justify-content: center;
+        }
+
+        .seguros-colunas { column-gap: 10rem; }
+        .seguros-colunas > li { break-inside: avoid; }
+
+        .seguros-colunas .titulo-coluna {
+            font-weight: 700;
+            color: #1d1d1d;
+            padding: .5rem 0;
+            margin: 0 0 .5rem;
+            border-bottom: 1px solid #e9e9e9;
+            white-space: nowrap;   /* evita quebra em 2 linhas */
+            display: block;
+        }
+        .seguros-colunas .quebra-coluna {
+            break-before: column;
+            -webkit-column-break-before: always;
+        }
+
+        /* Hover azul escuro nos itens */
+        .seguros-colunas .dropdown-item:hover {
+            color: #003366 !important;
+            background-color: transparent !important;
+        }
+
+        .footer-wide {
+        padding-left: 40px;  /* diminui margem lateral */
+        padding-right: 100px; /* mesma medida na direita */
+        }
+
+        .custom-svg-position-4 {
+            top: -470px;
+        }
