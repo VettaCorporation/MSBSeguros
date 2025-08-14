@@ -293,7 +293,7 @@
 								<div class="row py-4 mb-3">
 									<div class="col-lg-6 pb-4 pb-lg-0">
 
-										<p class="text-4-5 pe-lg-2 text-dark font-weight-bold">123 Porto Drive, Suite 10B, Vista, Kansas, 99999</p>
+										<p class="text-4-5 pe-lg-2 text-dark font-weight-bold">Av. Conselheiro Aguiar, 4599 - Boa Viagem - Recife/PE</p>
 										<ul class="list list-unstyled">
 											<li class="d-flex align-items-center mb-3">
 												<i class="icon icon-envelope text-color-dark text-3 font-weight-bold position-relative top-1 me-3-5"></i>
@@ -307,7 +307,7 @@
 
 									</div>
 									<div class="col-lg-6">
-										<div id="googlemaps" class="google-map mt-0 mb-0" style="height: 400px;"></div>
+										<div id="map" style="height:420px;border-radius:12px;overflow:hidden;"></div>
 									</div>
 								</div>
 
@@ -498,64 +498,32 @@
 		<!-- Theme Initialization Files -->
 		<script src="js/theme.init.js"></script>
 
-	<!-- Google Maps -->
-		<script>
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-			/* 
-			Map Markers:
-			- Get an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key
-			- Generate Map Id: https://console.cloud.google.com/google/maps-apis/studio/maps
-			- Use https://www.latlong.net/convert-address-to-lat-long.html to get Latitude and Longitude of a specific address
-			*/
-			(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-				({key: "YOUR_API_KEY", v: "weekly"});
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-			async function initMap() {
-				const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-				const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-					"marker",
-				);
-				const map = new Map(document.getElementById("googlemaps"), {
-					zoom: 14,
-					center: { lat: -37.817240, lng: 144.955820 },
-					mapId: "YOUR_MAP_API_ID",
-				});
-				const markers = [
-					{
-						position: { lat: -37.817240, lng: 144.955820 },
-						title: "Office 1<br>Melbourne, 121 King St, Australia<br>Phone: 123-456-1234",
-					}
-				];
+<!-- Inicialização do mapa -->
+<script>
+  // Coordenadas aproximadas do endereço
+  const coords = [-8.127556, -34.899870];
 
-				const infoWindow = new InfoWindow();
+  // Inicia mapa
+  const map = L.map('map').setView(coords, 16);
 
-				markers.forEach(({ position, title }, i) => {
-					const pin = new PinElement({
-						background: "#e36159",
-						borderColor: "#e36159",
-						glyphColor: "#FFF",
-					});
-					const marker = new AdvancedMarkerElement({
-						position,
-						map,
-						title: `${title}`,
-						content: pin.element,
-					});
+  // Camada de tiles (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-					marker.addListener("click", ({ domEvent, latLng }) => {
-						const { target } = domEvent;
-
-						infoWindow.close();
-						infoWindow.setContent(marker.title);
-						infoWindow.open(marker.map, marker);
-					});
-				});	
-
-			}
-
-			initMap();	
-
-		</script>
+  // Marker + popup
+  L.marker(coords).addTo(map)
+    .bindPopup('MSB Corretora de Seguros')
+    .openPopup();
+</script>
 
 	</body>
 </html>

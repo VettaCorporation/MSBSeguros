@@ -768,29 +768,26 @@
 									<p class="text-3-5 mb-5-5">Proteção personalizada para você e sua família, de forma
 										simples e segura.</p>
 
-									<form action="" class="custom-form-style-1">
+									<form id="insuranceForm" action="" class="custom-form-style-1">
+
 										<!-- Nome -->
 										<div class="form-group mb-3">
-											<input type="text" class="form-control" name="first_name" placeholder="Nome"
-												required>
+											<input type="text" class="form-control" name="nome" placeholder="Nome" required>
 										</div>
 
 										<!-- Sobrenome -->
 										<div class="form-group mb-3">
-											<input type="text" class="form-control" name="last_name"
-												placeholder="Sobrenome" required>
+											<input type="text" class="form-control" name="sobrenome" placeholder="Sobrenome" required>
 										</div>
 
 										<!-- Email -->
 										<div class="form-group mb-3">
-											<input type="email" class="form-control" name="email" placeholder="E-mail"
-												required>
+											<input type="email" class="form-control" name="email" placeholder="E-mail" required>
 										</div>
 
 										<!-- Telefone -->
 										<div class="form-group mb-3">
-											<input type="tel" class="form-control" name="phone" placeholder="Celular"
-												required>
+											<input type="tel" class="form-control" name="telefone" placeholder="Celular" required>
 										</div>
 
 										<!-- Tipo de Seguro -->
@@ -1283,109 +1280,168 @@
 		<!-- Theme Initialization Files -->
 		<script src="js/theme.init.js"></script>
 
+		<!-- jsPDF -->
+		<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+		<!-- EmailJS -->
+		<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 <script>
-(function(){
-  const root   = document.getElementById('protecoesSliderDesktop');
-  if(!root) return;
+  // ===== CONFIG =====
+  const EMAILJS_USER_ID     = "m0pYB6E7b0_RQDDEZ";        // sua Public Key
+  const EMAILJS_SERVICE_ID  = "msb-seguros-envio-email";  // Service ID
+  const EMAILJS_TEMPLATE_ID = "template_msb_seguros";     // Template ID
 
-  const track  = root.querySelector('.psd-track');
-  const items  = () => root.querySelectorAll('.psd-item');
-  const prevBt = root.querySelector('.psd-prev');
-  const nextBt = root.querySelector('.psd-next');
+  const WHATSAPP_NUMBER   = "5581988877800";
+  const WHATSAPP_MSG_BASE = "Olá! Gostaria de simular um seguro.";
 
-  const STEP = 25;      // 1 card = 25%
-  const SPEED = 700;    // ms
-  let moving = false;
+  // Inicia EmailJS
+  (function(){ emailjs.init(EMAILJS_USER_ID); })();
 
-  const reflow = el => el.offsetHeight;
-
-  function goNext(){
-    if(moving) return; moving = true;
-    track.style.transition = `transform ${SPEED}ms ease`;
-    track.style.transform  = `translateX(-${STEP}%)`;
-    track.addEventListener('transitionend', () => {
-      // move primeiro pro fim, reseta
-      track.appendChild(items()[0]);
-      track.style.transition = 'none';
-      track.style.transform  = 'translateX(0)';
-      reflow(track);
-      moving = false;
-    }, { once:true });
+  // Mapa de rótulos
+  function labelSeguro(value) {
+    const mapa = {
+      "consorcio": "Consórcio",
+      "plano-saude-individual": "Plano de Saúde (Individual)",
+      "plano-odontologico": "Plano Odontológico",
+      "previdencia-privada": "Previdência Privada",
+      "responsabilidade-civil-profissional": "Responsabilidade Civil Profissional",
+      "seguro-acidentes-pessoal-individual": "Seguro de Acidentes Pessoal (Individual)",
+      "seguro-auto": "Seguro Auto",
+      "seguro-equipamentos-portateis": "Seguro de Equipamentos Portáteis",
+      "seguro-vida-individual": "Seguro de Vida (Individual)",
+      "seguro-moto": "Seguro Moto",
+      "seguro-pet": "Seguro Pet",
+      "seguro-residencial": "Seguro Residencial",
+      "seguro-viagem": "Seguro Viagem",
+      "do": "D&O",
+      "plano-saude-empresarial": "Plano de Saúde (Empresarial)",
+      "responsabilidade-civil-empresarial": "Responsabilidade Civil (Empresarial)",
+      "seguro-acidentes-pessoal-empresarial": "Seguro de Acidentes Pessoal (Empresarial)",
+      "seguro-vida-empresarial": "Seguro de Vida (Coletivo)",
+      "seguro-empresarial": "Seguro Empresarial",
+      "seguro-residencial-empresarial": "Seguro Residencial (Empresarial)"
+    };
+    return mapa[value] ?? value ?? "-";
   }
 
-  function goPrev(){
-    if(moving) return; moving = true;
-    // traz o último pro início já deslocado
-    track.style.transition = 'none';
-    track.insertBefore(items()[items().length-1], items()[0]);
-    track.style.transform = `translateX(-${STEP}%)`;
-    reflow(track);
-    track.style.transition = `transform ${SPEED}ms ease`;
-    track.style.transform  = 'translateX(0)';
-    track.addEventListener('transitionend', () => { moving = false; }, { once:true });
-  }
+  // ===== SUBMISSÃO DO FORM =====
+  const form = document.querySelector('#insuranceForm');
 
-  nextBt.addEventListener('click', e => { e.preventDefault(); stopAuto(); goNext(); resetIdle(); });
-  prevBt.addEventListener('click', e => { e.preventDefault(); stopAuto(); goPrev(); resetIdle(); });
+  function setBtnText(btn, text) {
+  if (btn.tagName === 'INPUT') btn.value = text;
+  else btn.textContent = text;
+}
 
-  // autoplay só após 30s sem interação
-  const IDLE_MS = 30000, AUTO_MS = 10000;
-  let idleTimer=null, autoTimer=null;
-  function startAuto(){ stopAuto(); autoTimer = setInterval(goNext, AUTO_MS); }
-  function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
-  function resetIdle(){ stopAuto(); clearTimeout(idleTimer); idleTimer = setTimeout(startAuto, IDLE_MS); }
-  resetIdle();
-  ['click','mousemove','keydown','touchstart','wheel','pointerdown'].forEach(evt=>{
-    window.addEventListener(evt, resetIdle, { passive:true });
-  });
-})();
-</script>
+function setBtnState(btn, add, remove = []) {
+  btn.classList.remove(...remove);
+  btn.classList.add(add);
+}
 
-
-<script src="https://cdn.jsdelivr.net/npm/jspdf"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  // Inicializar EmailJS (substitua pelo seu USER ID do EmailJS)
-  emailjs.init("SEU_USER_ID_EMAILJS");
-
-  document.getElementById('insuranceForm').addEventListener('submit', function (e) {
+if (form) {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // 1️⃣ Captura dos dados do formulário
-    const formData = new FormData(this);
-    let dados = "";
-    formData.forEach((valor, chave) => {
-      dados += `${chave}: ${valor}\n`;
-    });
+    const submitBtn = form.querySelector('input[type="submit"], button[type="submit"]');
+    const originalText = submitBtn ? (submitBtn.value || submitBtn.textContent) : 'ENVIAR';
 
-    // 2️⃣ Gera o PDF com jsPDF
-    const doc = new jsPDF();
-    doc.setFontSize(12);
-    doc.text("Dados do Formulário de Seguro", 10, 10);
-    doc.text(dados, 10, 20);
-    const pdfBase64 = doc.output("datauristring");
+    // estado: enviando
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      setBtnText(submitBtn, 'ENVIANDO...');
+      setBtnState(submitBtn, 'btn-warning', ['btn-secondary', 'btn-success', 'btn-danger']);
+    }
 
-    // 3️⃣ Envia o PDF por e-mail com EmailJS
-    emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
-      message: "Segue em anexo o PDF com os dados preenchidos.",
-      attachment: pdfBase64
-    })
-    .then(() => {
-      console.log("E-mail enviado com sucesso!");
-      
-      // 4️⃣ Redireciona para o WhatsApp
-      const numeroWhatsApp = "5581988877800";
-      const mensagem = encodeURIComponent("Olá! Gostaria de simular um seguro.");
-      window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank");
+      try {
+        // Coleta
+        const fd = new FormData(form);
+        const data = {};
+        fd.forEach((v, k) => data[k] = v);
 
-    }).catch((err) => {
-      console.error("Erro ao enviar e-mail:", err);
-      alert("Erro ao enviar o formulário. Tente novamente.");
-    });
-  });
+        const firstName    = (data.nome || "").trim();
+        const lastName     = (data.sobrenome || "").trim();
+        const nomeCompleto = `${firstName} ${lastName}`.trim();
+        const tipoSeguro   = labelSeguro(data.insurance_type);
+        const mensagem     = (data.mensagem || "").trim();
+
+        // ===== Gera PDF (jsPDF) =====
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: "pt", format: "a4" });
+        const margem = 40, linha = 20;
+
+        doc.setFont("Helvetica", "bold"); doc.setFontSize(16);
+        doc.text("Simulação de Seguro - Dados do Formulário", margem, 60);
+
+        doc.setFont("Helvetica", "normal"); doc.setFontSize(12);
+        const resumo =
+				`Tipo de Seguro: ${tipoSeguro}
+				Nome: ${nomeCompleto || "-"}
+				E-mail: ${data.email || "-"}
+				Telefone: ${data.telefone || "-"}
+				Mensagem: ${mensagem || "-"}`;
+
+        let y = 100;
+        doc.splitTextToSize(resumo, doc.internal.pageSize.getWidth() - margem * 2)
+           .forEach(l => { 
+             if (y > doc.internal.pageSize.getHeight() - 60) { doc.addPage(); y = 60; }
+             doc.text(l, margem, y); y += linha;
+           });
+
+        // Base64 (sem cabeçalho) para anexar via EmailJS
+        const pdfBase64 = doc.output("datauristring").split(",")[1];
+        const fileName  = `simulacao-${tipoSeguro.replace(/\s+/g,'-')}.pdf`;
+
+        // ===== Envia Email (anexo) =====
+        const templateParams = {
+          title: "Simulação de Seguro - Website",
+          first_name: firstName || "-",
+          last_name:  lastName  || "-",
+          email:      data.email || "-",
+          phone:      data.telefone || "-",
+          insurance_type: tipoSeguro,
+          message:    mensagem || "-",
+          name: nomeCompleto || "-",
+          attachments: [{ name: fileName, data: pdfBase64 }]
+        };
+
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+
+        // ===== WhatsApp =====
+        const msg =
+				`${WHATSAPP_MSG_BASE}
+
+				Tipo de Seguro: ${tipoSeguro}
+				Nome: ${nomeCompleto || "-"}
+				Telefone: ${data.telefone || "-"}
+				E-mail: ${data.email || "-"}`;
+
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+
+      if (submitBtn) {
+        setBtnText(submitBtn, 'ENVIADO');
+        setBtnState(submitBtn, 'btn-success', ['btn-warning', 'btn-secondary', 'btn-danger']);
+        setTimeout(() => {
+          setBtnText(submitBtn, originalText);
+          setBtnState(submitBtn, 'btn-secondary', ['btn-success', 'btn-warning', 'btn-danger']);
+          submitBtn.disabled = false;
+					form.reset();
+        }, 3000);
+      }
+    } catch (err) {
+      console.error(err);
+      // erro
+      if (submitBtn) {
+        setBtnText(submitBtn, 'Erro!');
+        setBtnState(submitBtn, 'btn-danger', ['btn-warning', 'btn-secondary', 'btn-success']);
+        setTimeout(() => {
+          setBtnText(submitBtn, originalText);
+          setBtnState(submitBtn, 'btn-secondary', ['btn-success', 'btn-warning', 'btn-danger']);
+          submitBtn.disabled = false;
+        }, 2500);
+      }
+    }
+});
+  }
 </script>
-
-
 
 </body>
 
