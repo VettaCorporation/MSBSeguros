@@ -1325,8 +1325,8 @@
 	nextBt.addEventListener('click', e => { e.preventDefault(); stopAuto(); goNext(); resetIdle(); });
   prevBt.addEventListener('click', e => { e.preventDefault(); stopAuto(); goPrev(); resetIdle(); });
 
-  // autoplay só após 30s sem interação
-  const IDLE_MS = 30000, AUTO_MS = 10000;
+  // autoplay só após 10s sem interação
+  const IDLE_MS = 10000, AUTO_MS = 5000;
   let idleTimer=null, autoTimer=null;
   function startAuto(){ stopAuto(); autoTimer = setInterval(goNext, AUTO_MS); }
   function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
