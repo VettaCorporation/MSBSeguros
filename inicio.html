@@ -1280,6 +1280,64 @@
 		<!-- Theme Initialization Files -->
 		<script src="js/theme.init.js"></script>
 
+		<script>
+(function(){
+  const root   = document.getElementById('protecoesSliderDesktop');
+  if(!root) return;
+
+  const track  = root.querySelector('.psd-track');
+  const items  = () => root.querySelectorAll('.psd-item');
+  const prevBt = root.querySelector('.psd-prev');
+  const nextBt = root.querySelector('.psd-next');
+
+  const STEP = 25;      // 1 card = 25%
+  const SPEED = 700;    // ms
+  let moving = false;
+
+  const reflow = el => el.offsetHeight;
+
+  function goNext(){
+    if(moving) return; moving = true;
+    track.style.transition = `transform ${SPEED}ms ease`;
+    track.style.transform  = `translateX(-${STEP}%)`;
+    track.addEventListener('transitionend', () => {
+      // move primeiro pro fim, reseta
+      track.appendChild(items()[0]);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(0)';
+      reflow(track);
+      moving = false;
+    }, { once:true });
+
+		function goPrev(){
+    if(moving) return; moving = true;
+    // traz o último pro início já deslocado
+    track.style.transition = 'none';
+    track.insertBefore(items()[items().length-1], items()[0]);
+    track.style.transform = `translateX(-${STEP}%)`;
+    reflow(track);
+    track.style.transition = `transform ${SPEED}ms ease`;
+    track.style.transform  = 'translateX(0)';
+    track.addEventListener('transitionend', () => { moving = false; }, { once:true });
+  }
+	 }
+
+	nextBt.addEventListener('click', e => { e.preventDefault(); stopAuto(); goNext(); resetIdle(); });
+  prevBt.addEventListener('click', e => { e.preventDefault(); stopAuto(); goPrev(); resetIdle(); });
+
+  // autoplay só após 30s sem interação
+  const IDLE_MS = 30000, AUTO_MS = 10000;
+  let idleTimer=null, autoTimer=null;
+  function startAuto(){ stopAuto(); autoTimer = setInterval(goNext, AUTO_MS); }
+  function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
+  function resetIdle(){ stopAuto(); clearTimeout(idleTimer); idleTimer = setTimeout(startAuto, IDLE_MS); }
+  resetIdle();
+  ['click','mousemove','keydown','touchstart','wheel','pointerdown'].forEach(evt=>{
+    window.addEventListener(evt, resetIdle, { passive:true });
+  });
+})();
+</script>
+
 		<!-- jsPDF -->
 		<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 		<!-- EmailJS -->
